@@ -1,0 +1,168 @@
+/* Import shared program card components */
+@import url('program-card.css');
+
+/* Homepage Styles */
+.homepage {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
+    line-height: 1;
+    color: var(--color-text);
+}
+
+.hero-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin-bottom: 2rem;
+}
+
+/* Subscription Form */
+.subscription-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.email-input {
+    flex: 1;
+    padding: 0.7rem 1.5rem;
+    border: 2px solid var(--color-text);
+    border-radius: var(--border-radius-pill);
+    background-color: var(--color-text-inverse);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.email-input:focus {
+    border-color: var(--color-bg-dark);
+}
+
+.email-input::placeholder {
+    color: #999;
+}
+
+.btn-subscribe {
+    padding: 0.7rem 2rem;
+    border: none;
+    border-radius: var(--border-radius-pill);
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-inverse);
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color var(--transition-fast);
+}
+
+.btn-subscribe:hover {
+    background-color: var(--color-hover-dark);
+}
+
+/* Featured Program Section */
+.featured-program {
+    margin: 2rem 0;
+}
+
+.program-card-featured {
+    max-width: 100%;
+}
+
+/* Programs Grid (Two Columns) */
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+/* Override aspect ratio for single images in grid */
+.programs-grid .program-card-images:has(.program-image:only-child) .program-image {
+    aspect-ratio: 5/4;
+}
+
+/* View More Section */
+.view-more {
+    text-align: center;
+    padding: 3rem 0 0;
+}
+
+.view-more-link {
+    display: inline-block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+}
+
+.view-more-link:hover {
+    opacity: 0.7;
+}
+
+/* Responsive - Homepage */
+@media (max-width: 1024px) {
+    .programs-grid {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .homepage {
+        padding: 0 1rem 3rem;
+    }
+
+    .hero-section {
+        padding: 2rem 1rem 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        letter-spacing: -1px;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+    }
+
+    .subscription-form {
+        flex-direction: column;
+        gap: 0.75rem;
+        max-width: 100%;
+    }
+
+    .email-input,
+    .btn-subscribe {
+        width: 100%;
+    }
+
+    .programs-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+}

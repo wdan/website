@@ -1,6 +1,95 @@
+{{ define "extra-css" }}
+    <link rel="stylesheet" href="/css/homepage.css">
+{{ end }}
+
 {{ define "main" }}
-<main>
-    <h1>{{ .Title }}</h1>
-    {{ .Content }}
+<main class="homepage">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">{{ .Params.hero_title | default "ABOUT BACCSCINEMA" }}</h1>
+        <p class="hero-description">{{ .Params.hero_description }}</p>
+
+        {{ if .Params.show_subscription }}
+        <div class="subscription-form">
+            <input type="email" placeholder="{{ .Params.email_placeholder | default "Enter Your Email" }}" class="email-input">
+            <button class="btn-subscribe">{{ .Params.subscribe_text | default "Subscribe" }}</button>
+        </div>
+        {{ end }}
+    </section>
+
+    <!-- Featured Program (Full Width) -->
+    {{ with .Params.featured_program }}
+    <section class="featured-program">
+        <article class="program-card program-card-featured">
+            <div class="program-card-images">
+                {{ range .images }}
+                <div class="program-image">
+                    <img src="{{ . }}" alt="Program poster">
+                </div>
+                {{ end }}
+            </div>
+            <div class="program-card-content">
+                {{ if .label }}
+                <span class="program-label">{{ .label }}</span>
+                {{ end }}
+                <h2 class="program-card-title">{{ .title }}</h2>
+                <p class="program-card-description">{{ .description }}</p>
+                <a href="{{ .link }}" class="btn-details">{{ .button_text | default "Details" }}</a>
+            </div>
+        </article>
+    </section>
+    {{ end }}
+
+    <!-- Marquee Banner -->
+    {{ if .Params.marquee_text }}
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <div class="marquee-row">
+                {{ range seq 8 }}
+                <span class="marquee-item">{{ if eq (mod . 2) 0 }}⚫{{ else }}●{{ end }} {{ $.Params.marquee_text }}</span>
+                {{ end }}
+            </div>
+            <div class="marquee-row">
+                {{ range seq 8 }}
+                <span class="marquee-item">{{ if eq (mod . 2) 0 }}⚫{{ else }}●{{ end }} {{ $.Params.marquee_text }}</span>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+    {{ end }}
+
+    <!-- Programs Grid (Two Columns) -->
+    {{ if .Params.programs }}
+    <section class="programs-grid">
+        {{ range .Params.programs }}
+        <article class="program-card">
+            <div class="program-card-images">
+                {{ range .images }}
+                <div class="program-image">
+                    <img src="{{ . }}" alt="Program poster">
+                </div>
+                {{ end }}
+            </div>
+            <div class="program-card-content">
+                {{ if .label }}
+                <span class="program-label">{{ .label }}</span>
+                {{ end }}
+                <h2 class="program-card-title">{{ .title }}</h2>
+                <p class="program-card-description">{{ .description }}</p>
+                <a href="{{ .link }}" class="btn-details">{{ .button_text | default "Details" }}</a>
+            </div>
+        </article>
+        {{ end }}
+    </section>
+    {{ end }}
+
+    <!-- View More Link -->
+    {{ if .Params.view_more_link }}
+    <div class="view-more">
+        <a href="{{ .Params.view_more_link }}" class="view-more-link">
+            {{ .Params.view_more_text | default "View More" }} →
+        </a>
+    </div>
+    {{ end }}
 </main>
 {{ end }}
