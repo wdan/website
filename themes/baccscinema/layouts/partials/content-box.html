@@ -1,0 +1,30 @@
+{{/*
+  Content Box Partial
+  Usage: {{ partial "content-box.html" (dict "paragraphs" .Params.content_paragraphs "variant" "default") }}
+
+  Parameters:
+  - paragraphs: Array of text paragraphs to display
+  - variant: (optional) "default" or "contact" for styling variations
+  - title: (optional) Title for the box (used in contact variant)
+  - email: (optional) Email address (used in contact variant)
+*/}}
+
+{{ $paragraphs := .paragraphs }}
+{{ $variant := .variant | default "default" }}
+{{ $title := .title }}
+{{ $email := .email }}
+
+{{ if eq $variant "contact" }}
+<section class="content-box content-box-contact">
+    <h2 class="contact-title">{{ $title }}</h2>
+    {{ if $email }}
+    <a href="mailto:{{ $email }}" class="contact-email">{{ $email }}</a>
+    {{ end }}
+</section>
+{{ else }}
+<section class="content-box">
+    {{ range $paragraphs }}
+    <p class="content-paragraph">{{ . }}</p>
+    {{ end }}
+</section>
+{{ end }}

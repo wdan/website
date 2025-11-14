@@ -1,0 +1,22 @@
+{{ define "extra-css" }}
+    <link rel="stylesheet" href="/css/content-page.css">
+{{ end }}
+
+{{ define "main" }}
+<main class="content-page">
+    <!-- Hero Section -->
+    <section class="content-hero">
+        <h1 class="content-hero-title">{{ .Title }}</h1>
+    </section>
+
+    <!-- Main Content -->
+    {{ if .Params.content_paragraphs }}
+    {{ partial "content-box.html" (dict "paragraphs" .Params.content_paragraphs) }}
+    {{ end }}
+
+    <!-- Contact Us Section -->
+    {{ if .Params.contact_section }}
+    {{ partial "content-box.html" (dict "variant" "contact" "title" .Params.contact_section.title "email" .Params.contact_section.email) }}
+    {{ end }}
+</main>
+{{ end }}
