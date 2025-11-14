@@ -20,23 +20,7 @@
     <!-- Featured Program (Full Width) -->
     {{ with .Params.featured_program }}
     <section class="featured-program">
-        <article class="program-card program-card-featured">
-            <div class="program-card-images">
-                {{ range .images }}
-                <div class="program-image">
-                    <img src="{{ . }}" alt="Program poster">
-                </div>
-                {{ end }}
-            </div>
-            <div class="program-card-content">
-                {{ if .label }}
-                <span class="program-label">{{ .label }}</span>
-                {{ end }}
-                <h2 class="program-card-title">{{ .title }}</h2>
-                <p class="program-card-description">{{ .description }}</p>
-                <a href="{{ .link }}" class="btn-details">{{ .button_text | default "Details" }}</a>
-            </div>
-        </article>
+        {{ partial "program-card.html" (dict "program" . "variant" "featured") }}
     </section>
     {{ end }}
 
@@ -62,23 +46,7 @@
     {{ if .Params.programs }}
     <section class="programs-grid">
         {{ range .Params.programs }}
-        <article class="program-card">
-            <div class="program-card-images">
-                {{ range .images }}
-                <div class="program-image">
-                    <img src="{{ . }}" alt="Program poster">
-                </div>
-                {{ end }}
-            </div>
-            <div class="program-card-content">
-                {{ if .label }}
-                <span class="program-label">{{ .label }}</span>
-                {{ end }}
-                <h2 class="program-card-title">{{ .title }}</h2>
-                <p class="program-card-description">{{ .description }}</p>
-                <a href="{{ .link }}" class="btn-details">{{ .button_text | default "Details" }}</a>
-            </div>
-        </article>
+        {{ partial "program-card.html" (dict "program" .) }}
         {{ end }}
     </section>
     {{ end }}

@@ -1,0 +1,31 @@
+{{/*
+  Program Card Partial
+  Usage: {{ partial "program-card.html" (dict "program" . "variant" "featured") }}
+
+  Parameters:
+  - program: The program data object with title, description, images, link, label, button_text
+  - variant: (optional) "featured" for full-width cards, omit for grid cards
+*/}}
+
+{{ $program := .program }}
+{{ $variant := .variant }}
+
+<article class="program-card {{ if eq $variant "featured" }}program-card-featured{{ end }}">
+    <div class="program-card-images">
+        {{ range $program.images }}
+        <div class="program-image">
+            <img src="{{ . }}" alt="Program poster">
+        </div>
+        {{ end }}
+    </div>
+    <div class="program-card-content">
+        {{ if $program.label }}
+        <span class="program-label">{{ $program.label }}</span>
+        {{ end }}
+        <h2 class="program-card-title">{{ $program.title }}</h2>
+        <p class="program-card-description">{{ $program.description }}</p>
+        <a href="{{ $program.link }}" class="btn-details">
+            {{ $program.button_text | default "Details" }}
+        </a>
+    </div>
+</article>

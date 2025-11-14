@@ -31,20 +31,7 @@
     <!-- Programs Grid -->
     <section class="programs-section">
         {{ range .Params.programs }}
-        <article class="program-card">
-            <div class="program-card-images">
-                {{ range .images }}
-                <div class="program-image">
-                    <img src="{{ . }}" alt="Program poster">
-                </div>
-                {{ end }}
-            </div>
-            <div class="program-card-content">
-                <h2 class="program-card-title">{{ .title }}</h2>
-                <p class="program-card-description">{{ .description }}</p>
-                <a href="{{ .link }}" class="btn-details">Details</a>
-            </div>
-        </article>
+        {{ partial "program-card.html" (dict "program" .) }}
         {{ end }}
     </section>
 </main>
