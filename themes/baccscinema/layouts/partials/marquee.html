@@ -1,0 +1,22 @@
+{{/*
+Marquee Banner Partial
+Usage: {{ partial "marquee.html" (dict "text" "Your Text Here") }}
+*/}}
+{{ $text := .text }}
+
+{{ if $text }}
+<div class="marquee-container">
+    <div class="marquee-content">
+        <div class="marquee-row">
+            {{ range seq 8 }}
+            <span class="marquee-item">{{ if eq (mod . 2) 0 }}⚫{{ else }}●{{ end }} {{ $text }}</span>
+            {{ end }}
+        </div>
+        <div class="marquee-row">
+            {{ range seq 8 }}
+            <span class="marquee-item">{{ if eq (mod . 2) 0 }}⚫{{ else }}●{{ end }} {{ $text }}</span>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}

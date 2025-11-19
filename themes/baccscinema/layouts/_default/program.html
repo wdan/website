@@ -1,5 +1,5 @@
 {{ define "extra-css" }}
-    <link rel="stylesheet" href="/css/program.css">
+<link rel="stylesheet" href="/css/program.css">
 {{ end }}
 
 {{ define "main" }}
@@ -11,22 +11,8 @@
     </section>
 
     <!-- Marquee Banner -->
-    <div class="marquee-container">
-        <div class="marquee-content">
-            <div class="marquee-row">
-                <span class="marquee-item">⚫ LATEST SCREENING PROGRAMS</span>
-                <span class="marquee-item">⚫ LATEST SCREENING PROGRAMS</span>
-                <span class="marquee-item">⚫ LATEST SCREENING PROGRAMS</span>
-                <span class="marquee-item">⚫ LATEST SCREENING PROGRAMS</span>
-            </div>
-            <div class="marquee-row">
-                <span class="marquee-item">⚫ LATEST SCREENING PROGRAMS</span>
-                <span class="marquee-item">⚫ LATEST SCREENING PROGRAMS</span>
-                <span class="marquee-item">⚫ LATEST SCREENING PROGRAMS</span>
-                <span class="marquee-item">⚫ LATEST SCREENING PROGRAMS</span>
-            </div>
-        </div>
-    </div>
+    <!-- Marquee Banner -->
+    {{ partial "marquee.html" (dict "text" "LATEST SCREENING PROGRAMS") }}
 
     <!-- Programs Grid -->
     <section class="programs-section">

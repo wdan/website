@@ -1,5 +1,5 @@
 {{ define "extra-css" }}
-    <link rel="stylesheet" href="/css/homepage.css">
+<link rel="stylesheet" href="/css/homepage.css">
 {{ end }}
 
 {{ define "main" }}
@@ -11,7 +11,8 @@
 
         {{ if .Params.show_subscription }}
         <div class="subscription-form">
-            <input type="email" placeholder="{{ .Params.email_placeholder | default "Enter Your Email" }}" class="email-input">
+            <input type="email" placeholder="{{ .Params.email_placeholder | default " Enter Your Email" }}"
+                class="email-input">
             <button class="btn-subscribe">{{ .Params.subscribe_text | default "Subscribe" }}</button>
         </div>
         {{ end }}
@@ -25,22 +26,7 @@
     {{ end }}
 
     <!-- Marquee Banner -->
-    {{ if .Params.marquee_text }}
-    <div class="marquee-container">
-        <div class="marquee-content">
-            <div class="marquee-row">
-                {{ range seq 8 }}
-                <span class="marquee-item">{{ if eq (mod . 2) 0 }}⚫{{ else }}●{{ end }} {{ $.Params.marquee_text }}</span>
-                {{ end }}
-            </div>
-            <div class="marquee-row">
-                {{ range seq 8 }}
-                <span class="marquee-item">{{ if eq (mod . 2) 0 }}⚫{{ else }}●{{ end }} {{ $.Params.marquee_text }}</span>
-                {{ end }}
-            </div>
-        </div>
-    </div>
-    {{ end }}
+    {{ partial "marquee.html" (dict "text" .Params.marquee_text) }}
 
     <!-- Programs Grid (Two Columns) -->
     {{ if .Params.programs }}
