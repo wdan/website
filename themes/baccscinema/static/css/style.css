@@ -180,6 +180,145 @@ body {
     background-color: var(--color-hover-dark);
 }
 
+/* Hamburger Menu - Hidden by default */
+.hamburger-menu {
+    display: none;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: all 0.3s ease;
+}
+
+/* Mobile Sidebar - Hidden off-screen and not displayed by default */
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--color-primary);
+    z-index: 1002;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+    visibility: hidden;
+}
+
+.mobile-sidebar.active {
+    left: 0;
+    visibility: visible;
+}
+
+.sidebar-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Sidebar Language Switcher */
+.sidebar-language-switcher {
+    position: relative;
+}
+
+.sidebar-lang-current {
+    width: 100%;
+    background: none;
+    border: 1px solid var(--color-text);
+    border-radius: var(--border-radius);
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color var(--transition-fast);
+}
+
+.sidebar-lang-current:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-lang-dropdown {
+    display: none;
+    margin-top: 0.5rem;
+    border: 1px solid var(--color-text);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.sidebar-lang-dropdown.active {
+    display: block;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+    flex: 1;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.sidebar-nav li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-nav li:last-child {
+    border-bottom: none;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 1rem 0;
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: 1rem;
+    transition: opacity var(--transition-fast);
+}
+
+.sidebar-nav a:hover {
+    opacity: 0.7;
+}
+
+/* Sidebar Contact */
+.sidebar-contact {
+    margin-top: auto;
+}
+
+.sidebar-contact .btn-contact {
+    width: 100%;
+    display: block;
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .header-nav-row ul {
@@ -194,12 +333,36 @@ body {
     }
 
     .header-container {
-        flex-wrap: wrap;
         gap: 0.75rem;
     }
 
+    /* Show hamburger menu on mobile */
+    .hamburger-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+    }
+
+    /* Show mobile sidebar structure on mobile only */
+    .mobile-sidebar {
+        visibility: visible;
+    }
+
+    /* Hide desktop navigation and actions */
+    .desktop-nav,
+    .desktop-actions {
+        display: none;
+    }
+
     .logo {
-        flex: 0 0 auto;
+        flex: 1;
     }
 
     .logo img {
@@ -209,39 +372,6 @@ body {
 
     .logo-text {
         font-size: 1.1rem;
-    }
-
-    .header-actions {
-        gap: 0.5rem;
-        flex-shrink: 0;
-    }
-
-    .header-nav-row {
-        flex-basis: 100%;
-        order: 3;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .header-nav-row ul {
-        gap: 1rem;
-        font-size: 0.85rem;
-        padding-bottom: 0.25rem;
-        white-space: nowrap;
-    }
-
-    .lang-current {
-        font-size: 0.75rem;
-        padding: 0.4rem 0.6rem;
-    }
-
-    .lang-dropdown {
-        min-width: 120px;
-    }
-
-    .lang-option {
-        font-size: 0.85rem;
-        padding: 0.6rem 0.8rem;
     }
 }
 
@@ -254,8 +384,12 @@ body {
         gap: 0.5rem;
     }
 
-    .header-nav-row ul {
-        gap: 0.75rem;
-        font-size: 0.8rem;
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .hamburger-menu {
+        width: 20px;
+        height: 16px;
     }
 }
